@@ -1,9 +1,14 @@
 import "./App.css";
+import BookCard from "./component/BookCard";
+import Navbar from "./component/Navbar";
+import Hero from "./component/hero";
 
 function App() {
   return (
     <>
-      <p>Book Store 2023</p>
+      <Navbar />
+      <Hero />
+      <BookCard />
     </>
   );
 }
