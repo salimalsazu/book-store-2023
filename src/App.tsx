@@ -1,15 +1,15 @@
 import "./App.css";
-import BookCard from "./component/BookCard";
+import Footer from "./component/Footer";
 import Navbar from "./component/Navbar";
-import Hero from "./component/hero";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar />
-      <Hero />
-      <BookCard />
-    </>
+      <Outlet />
+      <Footer />
+    </div>
   );
 }
 

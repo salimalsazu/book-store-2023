@@ -13,6 +13,12 @@ const BookCard = () => {
         <SingleBookCard />
         <SingleBookCard />
         <SingleBookCard />
+        <SingleBookCard />
+        <SingleBookCard />
+        <SingleBookCard />
+        <SingleBookCard />
+        <SingleBookCard />
+        <SingleBookCard />
       </div>
     </section>
   );
