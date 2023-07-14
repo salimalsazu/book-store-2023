@@ -1,6 +1,15 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { IReg } from "@/Interface/login";
 
 const Registration = () => {
+  const { register, handleSubmit } = useForm<IReg>();
+
+  const handleReg = (payload: IReg) => {
+    console.log(payload);
+  };
+
   return (
     <section className="bg-white">
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -19,7 +28,11 @@ const Registration = () => {
                 Login
               </Link>
             </p>
-            <form action="#" method="POST" className="mt-8">
+            <form
+              action="#"
+              onSubmit={handleSubmit(handleReg)}
+              className="mt-8"
+            >
               <div className="space-y-5">
                 <div>
                   <label
@@ -32,8 +45,7 @@ const Registration = () => {
                   <div className="mt-2.5">
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      {...register("name", { required: true })}
                       placeholder="Enter your full name"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
@@ -44,14 +56,12 @@ const Registration = () => {
                     htmlFor=""
                     className="text-base font-medium text-gray-900"
                   >
-                    {" "}
                     Email address{" "}
                   </label>
                   <div className="mt-2.5">
                     <input
                       type="email"
-                      name=""
-                      id=""
+                      {...register("email", { required: true })}
                       placeholder="Enter email to get started"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
@@ -62,14 +72,12 @@ const Registration = () => {
                     htmlFor=""
                     className="text-base font-medium text-gray-900"
                   >
-                    {" "}
                     Password{" "}
                   </label>
                   <div className="mt-2.5">
                     <input
                       type="password"
-                      name=""
-                      id=""
+                      {...register("password", { required: true })}
                       placeholder="Enter your password"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
@@ -86,7 +94,7 @@ const Registration = () => {
                     htmlFor="agree"
                     className="ml-3 text-sm font-medium text-gray-500"
                   >
-                    I agree to Postcraft’s{" "}
+                    I agree to BookStore{" "}
                     <a
                       href="#"
                       title=""
@@ -104,12 +112,12 @@ const Registration = () => {
                     </a>
                   </label>
                 </div>
-                <div>
+                <div className="bg-red-600 text-white text-center">
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700"
+                    className="bg-red-500 text-white px-10 py-3 text-center"
                   >
-                    Create free account
+                    Registration
                   </button>
                 </div>
               </div>

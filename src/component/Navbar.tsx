@@ -39,30 +39,30 @@ const Navbar = () => {
               {" "}
               Home{" "}
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/books"
               title=""
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
               Books{" "}
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/addBook"
               title=""
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
               Add Book{" "}
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/mybooks"
               title=""
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
               My Book{" "}
-            </a>
+            </Link>
             <Link
               to="/login"
               title=""

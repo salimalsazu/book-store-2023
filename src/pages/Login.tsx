@@ -1,6 +1,15 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { ILog } from "@/Interface/login";
 
 const Login = () => {
+  const { register, handleSubmit } = useForm<ILog>();
+
+  const handleLogin = (payload: ILog) => {
+    console.log(payload);
+  };
+
   return (
     <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -15,16 +24,13 @@ const Login = () => {
         <div className="relative max-w-md mx-auto mt-8 md:mt-16">
           <div className="overflow-hidden bg-white rounded-md shadow-md">
             <div className="px-4 py-6 sm:px-8 sm:py-7">
-              <form action="#" method="POST">
+              <form action="#" onSubmit={handleSubmit(handleLogin)}>
                 <div className="space-y-5">
                   <div>
                     <label
                       htmlFor=""
                       className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Email address{" "}
-                    </label>
+                    ></label>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
@@ -44,9 +50,8 @@ const Login = () => {
                       </div>
                       <input
                         type="email"
-                        name=""
-                        id=""
                         placeholder="Enter email to get started"
+                        {...register("email", { required: true })}
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                       />
                     </div>
@@ -56,18 +61,12 @@ const Login = () => {
                       <label
                         htmlFor=""
                         className="text-base font-medium text-gray-900"
-                      >
-                        {" "}
-                        Password{" "}
-                      </label>
+                      ></label>
                       <a
                         href="#"
                         title=""
                         className="text-sm font-medium text-orange-500 transition-all duration-200 hover:text-orange-600 focus:text-orange-600 hover:underline"
-                      >
-                        {" "}
-                        Forgot password?{" "}
-                      </a>
+                      ></a>
                     </div>
                     <div className="mt-2.5 relative text-gray-400 focus-within:text-gray-600">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -88,17 +87,16 @@ const Login = () => {
                       </div>
                       <input
                         type="password"
-                        name=""
-                        id=""
                         placeholder="Enter your password"
+                        {...register("password", { required: true })}
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="bg-red-600 text-white text-center">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700"
+                      className="bg-red-500 text-white px-10 py-2 text-center"
                     >
                       Log in
                     </button>
