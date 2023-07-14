@@ -8,6 +8,8 @@ import Books from "../pages/Books";
 import MyBooks from "../pages/MyBooks";
 import AddBook from "../pages/AddBook";
 import MySingleBook from "../component/MySingleBook";
+import WishList from "../component/WishList";
+import Reading from "../component/Reading";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +34,11 @@ const router = createBrowserRouter([
           },
           {
             path: "/mybooks/wishlist",
-            element: <MySingleBook />,
+            element: <WishList />,
           },
           {
             path: "/mybooks/reading",
-            element: <MySingleBook />,
+            element: <Reading />,
           },
         ],
       },

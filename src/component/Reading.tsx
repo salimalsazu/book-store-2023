@@ -34,6 +34,12 @@ const Reading = () => {
             >
               Publish Date
             </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Status
+            </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -59,53 +65,11 @@ const Reading = () => {
             <td className="px-6 py-4 whitespace-nowrap">
               <div className="text-sm text-gray-900">2023-07-14</div>
             </td>
-          </tr>
-          <tr>
             <td className="px-6 py-4 whitespace-nowrap">
-              <img
-                src="book-image.jpg"
-                alt="Book Image"
-                className="h-16 w-16 rounded-full"
-              />
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm font-medium text-gray-900">
-                The Book Title
-              </div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Author Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Genre Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">2023-07-14</div>
+              <div className="text-sm text-gray-900">Reading</div>
             </td>
           </tr>
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <img
-                src="book-image.jpg"
-                alt="Book Image"
-                className="h-16 w-16 rounded-full"
-              />
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm font-medium text-gray-900">
-                The Book Title
-              </div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Author Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Genre Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">2023-07-14</div>
-            </td>
-          </tr>
+
           {/* Add more rows here */}
         </tbody>
       </table>
