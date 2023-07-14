@@ -1,8 +1,6 @@
-
-
-const MySingleBook = () => {
+const Reading = () => {
   return (
-    <section>
+    <div>
       <table className="w-full divide-y divide-gray-200">
         <thead className="bg-gray-100 text-red-500 font-extrabold">
           <tr>
@@ -111,8 +109,8 @@ const MySingleBook = () => {
           {/* Add more rows here */}
         </tbody>
       </table>
-    </section>
+    </div>
   );
 };
 
-export default MySingleBook;
+export default Reading;

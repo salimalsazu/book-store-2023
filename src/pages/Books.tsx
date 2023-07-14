@@ -2,50 +2,6 @@ import SingleBookCard from "../component/SingleBookCard";
 
 const Books = () => {
   return (
-    // <section className="flex flex-col my-10">
-    //   <div className="flex flex-col justify-center items-center">
-    //     <h1 className="text-6xl font-bold my-2"> Discover Your Next Book </h1>
-    //     <p className="font-extralight text-gray-500 mb-14 text-center w-5/12">
-    //       "The best and most beautiful things in the world cannot be seen or
-    //       even heard, but must be felt with the heart."
-    //       <form action="" className="mt-3  bg-white">
-    //         <input
-    //           type="text"
-    //           name=""
-    //           id=""
-    //           placeholder="Search Your Book in here..."
-    //           className="rounded-full text-center border border-red-300 "
-    //         />
-    //       </form>
-    //     </p>
-    //   </div>
-    //   {/* <div>
-    //     <DropdownMenu>
-    //       <DropdownMenuTrigger asChild>
-    //         <Button variant="outline">Open</Button>
-    //       </DropdownMenuTrigger>
-    //       <DropdownMenuContent className="w-56">
-    //         <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-    //         <DropdownMenuSeparator />
-    //         <DropdownMenuRadioGroup
-    //           value={position}
-    //           onValueChange={setPosition}
-    //         >
-    //           <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-    //           <DropdownMenuRadioItem value="bottom">
-    //             Bottom
-    //           </DropdownMenuRadioItem>
-    //           <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
-    //         </DropdownMenuRadioGroup>
-    //       </DropdownMenuContent>
-    //     </DropdownMenu>
-    //   </div> */}
-    //   <div className="grid grid-cols-3 justify-center items-center gap-3 m-10">
-    //     <SingleBookCard />
-    //     <SingleBookCard />
-    //     <SingleBookCard />
-    //   </div>
-    // </section>
 
     <section className="px-[15px] lg:px-0 py-16 font-inter mt-[60px] bg-[#f6f6f7]">
       <div className="container mx-auto">

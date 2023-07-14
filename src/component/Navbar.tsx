@@ -45,7 +45,7 @@ const Navbar = () => {
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
-              Books{" "}
+             All Books{" "}
             </Link>
             <Link
               to="/addBook"
@@ -69,7 +69,22 @@ const Navbar = () => {
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
-              Login{" "}
+              Sign In{" "}
+            </Link>
+            <button
+              title=""
+              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+            >
+              {" "}
+             Logout{" "}
+            </button>
+            <Link
+              to="/Registration"
+              title=""
+              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+            >
+              {" "}
+              Sign Up{" "}
             </Link>
           </div>
         </nav>
@@ -103,14 +118,14 @@ const Navbar = () => {
               {" "}
               Home{" "}
             </a>
-            <a
-              href="#"
+            <Link
+              to="/books"
               title=""
               className="py-2 font-medium text-white transition-all duration-200 focus:text-opacity-70"
             >
               {" "}
-              Books{" "}
-            </a>
+             All Books{" "}
+            </Link>
             <a
               href="#"
               title=""
@@ -125,7 +140,7 @@ const Navbar = () => {
               className="py-2 font-medium text-white transition-all duration-200 focus:text-opacity-70"
             >
               {" "}
-              Login{" "}
+              Sign In{" "}
             </a>
           </nav>
         </nav>

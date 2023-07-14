@@ -1,4 +1,6 @@
 import books from "../assets/the story.jpg";
+import { MdOutlineDelete } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 
 const DetailsBooksPage = () => {
   return (
@@ -7,7 +9,19 @@ const DetailsBooksPage = () => {
         <img className="w-2/3" src={books} alt="" />
       </div>
       <div className="w-2/3 mt-5 lg:mt-0">
-        <button className="bg-red-500 text-white px-7 ">Sale</button>
+        <div className="flex justify-between">
+          <div>
+            <button className="bg-red-500 text-white px-7 py-1 ">Sale</button>
+          </div>
+          <div className="flex item center gap-2 text-4xl">
+            <p>
+              <BiEdit></BiEdit>
+            </p>
+            <p>
+              <MdOutlineDelete></MdOutlineDelete>
+            </p>
+          </div>
+        </div>
         <p className="text-6xl font-bold mt-10">The Story About Me</p>
         <p className="text-lg mt-5">Author: Salim Al Sazu</p>
         <p className="text-xl mt-5 ">
@@ -29,14 +43,6 @@ const DetailsBooksPage = () => {
             <span className="font-bold">Novel</span>
             <span className="font-bold">July 13, 2023</span>
           </div>
-        </div>
-        <div className="flex gap-5 mt-10">
-          <button className="bg-blue-500 text-white px-6 py-2">
-            Edit Book
-          </button>
-          <button className="bg-red-500 text-white px-6 py-2">
-            Delete Book
-          </button>
         </div>
       </div>
     </section>

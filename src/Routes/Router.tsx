@@ -5,8 +5,9 @@ import DetailsBook from "../pages/DetailsBook";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import Books from "../pages/Books";
-import MyBook from "@/pages/MyBooks";
-import AddBook from "@/pages/AddBook";
+import MyBooks from "../pages/MyBooks";
+import AddBook from "../pages/AddBook";
+import MySingleBook from "../component/MySingleBook";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/mybooks",
-        element: <MyBook />,
+        element: <MyBooks />,
+        children: [
+          {
+            path: "/mybooks",
+            element: <MySingleBook />,
+          },
+          {
+            path: "/mybooks/wishlist",
+            element: <MySingleBook />,
+          },
+          {
+            path: "/mybooks/reading",
+            element: <MySingleBook />,
+          },
+        ],
       },
       {
         path: "/books/1",

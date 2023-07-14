@@ -1,4 +1,4 @@
-import AddNewBook from "@/component/addBook";
+import AddNewBook from "../component/addBook";
 
 const AddBook = () => {
   return (
