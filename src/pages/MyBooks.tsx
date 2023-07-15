@@ -1,6 +1,5 @@
 import MyBooksLink from "../component/MyBooksLink";
-import MySingleBook from "../component/MySingleBook";
-import { Link, Outlet } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 
 const MyBooks = () => {
   return (

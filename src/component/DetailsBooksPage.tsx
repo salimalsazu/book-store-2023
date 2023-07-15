@@ -1,6 +1,8 @@
 import books from "../assets/the story.jpg";
 import { MdOutlineDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
+import { AiOutlineHeart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const DetailsBooksPage = () => {
   return (
@@ -13,13 +15,19 @@ const DetailsBooksPage = () => {
           <div>
             <button className="bg-red-500 text-white px-7 py-1 ">Sale</button>
           </div>
-          <div className="flex item center gap-2 text-4xl">
-            <p>
-              <BiEdit></BiEdit>
-            </p>
-            <p>
-              <MdOutlineDelete></MdOutlineDelete>
-            </p>
+          <div className="flex item center gap-2 text-2xl ">
+            <Link to="" className="border flex items-center p-2 ">
+              <BiEdit />
+              <span>Edit</span>
+            </Link>
+            <button className="border flex items-center p-2">
+              <MdOutlineDelete />
+              <span>Delete</span>
+            </button>
+            <button className="border flex items-center p-2">
+              <AiOutlineHeart />
+              <span>Wish</span>
+            </button>
           </div>
         </div>
         <p className="text-6xl font-bold mt-10">The Story About Me</p>
