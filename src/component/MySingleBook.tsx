@@ -1,5 +1,3 @@
-
-
 const MySingleBook = () => {
   return (
     <section>

@@ -1,6 +1,11 @@
+import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import SingleBookCard from "./SingleBookCard";
 
 const BookCard = () => {
+  const { data } = useGetBooksQuery(undefined);
+
+  console.log(data);
+
   return (
     <section className="flex flex-col justify-center items-center mx-10">
       <h1 className="text-6xl font-bold my-2"> Discover Your Next Book </h1>
