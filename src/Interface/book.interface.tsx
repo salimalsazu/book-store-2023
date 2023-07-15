@@ -8,3 +8,7 @@ export type IBook = {
   image?: string;
   description?: string;
 };
+
+export interface IProps {
+  book: IBook;
+}

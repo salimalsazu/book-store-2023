@@ -3,12 +3,21 @@ import { MdOutlineDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { IBook } from "../Interface/book.interface";
 
-const DetailsBooksPage = () => {
+interface IDetailes {
+  details: IBook;
+}
+
+const DetailsBooksPage = ({ details }: IDetailes) => {
   return (
     <section className="flex lg:flex-row  justify-center my-10 mx-10 ">
       <div>
-        <img className="w-2/3" src={books} alt="" />
+        {details?.image ? (
+          <img className="w-2/3" src={details?.image} alt="" />
+        ) : (
+          <img className="w-2/3" src={books} alt="" />
+        )}
       </div>
       <div className="w-2/3 mt-5 lg:mt-0">
         <div className="flex justify-between">
@@ -30,8 +39,8 @@ const DetailsBooksPage = () => {
             </button>
           </div>
         </div>
-        <p className="text-6xl font-bold mt-10">The Story About Me</p>
-        <p className="text-lg mt-5">Author: Salim Al Sazu</p>
+        <p className="text-6xl font-bold mt-10">{details?.title}</p>
+        <p className="text-lg mt-5">Author: {details?.author}</p>
         <p className="text-xl mt-5 ">
           Price : <span className="text-red-500">$10.00</span>
         </p>
@@ -44,12 +53,17 @@ const DetailsBooksPage = () => {
 
         <div className="mt-20 flex gap-10">
           <div>
-            <p>Genre:</p>
+            <p>Genre: </p>
             <p>Publishcation Date : </p>
           </div>
           <div className="flex flex-col">
-            <span className="font-bold">Novel</span>
-            <span className="font-bold">July 13, 2023</span>
+            <span className="font-bold">{details?.genre}</span>
+            <span className="font-bold">
+              {" "}
+              {details?.publication
+                ? details?.publication
+                : "July 13, 2023"}{" "}
+            </span>
           </div>
         </div>
       </div>

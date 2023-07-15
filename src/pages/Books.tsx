@@ -1,12 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { Link } from "react-router-dom";
 import { IBook } from "../Interface/book.interface";
 import SingleBookCard from "../component/SingleBookCard";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
+import { IoAddCircle } from "react-icons/io5";
 
 const Books = () => {
-  const { data: books, isLoading, isError } = useGetBooksQuery(undefined);
+  const {
+    data: books,
+    isLoading,
+    isError,
+  } = useGetBooksQuery(undefined, { pollingInterval: 1000 });
 
   console.log(isLoading);
 
@@ -30,6 +36,16 @@ const Books = () => {
 
   return (
     <section className="px-[15px] lg:px-0 py-16 font-inter mt-[60px] bg-[#f6f6f7]">
+      <div className="flex justify-end my-10 mx-10">
+        <Link to="/addBook">
+          <button className=" flex items-center bg-blue-600 text-white px-6 py-2">
+            <span className="mr-2 text-lg">
+              <IoAddCircle />
+            </span>
+            Add Book
+          </button>
+        </Link>
+      </div>
       <div className="container mx-auto">
         <div className="md:grid grid-cols-12 gap-8">
           {/* Filter */}
