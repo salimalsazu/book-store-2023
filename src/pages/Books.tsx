@@ -1,8 +1,34 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { IBook } from "../Interface/book.interface";
 import SingleBookCard from "../component/SingleBookCard";
+import { useGetBooksQuery } from "../redux/features/books/bookApi";
 
 const Books = () => {
-  return (
+  const { data: books, isLoading, isError } = useGetBooksQuery(undefined);
 
+  console.log(isLoading);
+
+  let gettingBooks;
+
+  if (isLoading) {
+    gettingBooks = (
+      <p className="items-center text-2xl font-extrabold">Loading...</p>
+    );
+  }
+
+  if (!isError && !isLoading && books?.data?.length === 0) {
+    <div className="items-center text-2xl font-extrabold">No Books Found</div>;
+  }
+
+  if (!isLoading && books?.data?.length > 0) {
+    gettingBooks = books?.data?.map((book: IBook) => (
+      <SingleBookCard book={book} key={book._id} />
+    ));
+  }
+
+  return (
     <section className="px-[15px] lg:px-0 py-16 font-inter mt-[60px] bg-[#f6f6f7]">
       <div className="container mx-auto">
         <div className="md:grid grid-cols-12 gap-8">
@@ -103,12 +129,7 @@ const Books = () => {
           {/* Books */}
           <div className=" col-span-9 bg-gray-200 shadow-book-details-card p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-5">
-              <SingleBookCard />
-              <SingleBookCard />
-              <SingleBookCard />
-              <SingleBookCard />
-              <SingleBookCard />
-              <SingleBookCard />
+              {gettingBooks}
             </div>
           </div>
         </div>
