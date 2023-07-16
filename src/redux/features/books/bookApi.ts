@@ -2,14 +2,25 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from "../../api/apiSlice";
 
+const token = localStorage.getItem("auth") as string;
+const myToken = JSON.parse(token);
+
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getBooks: builder.query({ query: () => "/books" }),
+    myBooks: builder.query({
+      query: () => ({
+        url: "/books/mybooks",
+        headers: {
+          authorization: myToken?.accessToken,
+        },
+      }),
+    }),
     singleBook: builder.query({
       query: (id) => `/books/${id}`,
     }),
     AddBook: builder.mutation({
-      query: ( data ) => ({
+      query: (data) => ({
         url: `/books`,
         method: "POST",
         body: data,
@@ -24,5 +35,9 @@ const bookApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetBooksQuery, useSingleBookQuery, useAddBookMutation } =
-  bookApi;
+export const {
+  useGetBooksQuery,
+  useSingleBookQuery,
+  useAddBookMutation,
+  useMyBooksQuery,
+} = bookApi;

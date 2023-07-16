@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
-
-
 const initialState = {
   accessToken: undefined,
   user: undefined,

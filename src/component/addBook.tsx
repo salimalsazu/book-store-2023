@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useAddBookMutation } from "../redux/features/books/bookApi";
+import { useAppSelector } from "../redux/hook";
 
 interface IAddNewBook {
   title: string;
@@ -11,18 +12,33 @@ interface IAddNewBook {
   image?: string | undefined;
 }
 
-
 const AddNewBook = () => {
+  const { user } = useAppSelector((state) => state?.auth || {});
+
+  console.log(user);
+
   const [addBook, { isError, error }] = useAddBookMutation();
 
   const { register, handleSubmit } = useForm<IAddNewBook>();
 
   const handleAddBook = (data: IAddNewBook) => {
-    addBook(data);
+    const book = {
+      title: data.title,
+      author: data.author,
+      genre: data.genre,
+      image: data.image,
+      publication: data.publication,
+      email: user?.email,
+      name: user?.name,
+      userId: user?._id,
+    };
+
+    console.log(book);
+    addBook(book);
     toast.success("Book added Successfully!", { autoClose: 400 });
   };
 
-  let inputError =  null
+  let inputError = null;
 
   if (isError && error) {
     inputError = <p>{error?.data?.errorMessages[0].message}</p>;
