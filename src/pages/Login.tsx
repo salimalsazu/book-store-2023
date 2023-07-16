@@ -1,14 +1,32 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { ILog } from "@/Interface/login";
+import { ILog } from "../Interface/login";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useEffect, useState } from "react";
+// import { useEffect } from "react";
+// import { toast } from "react-toastify";
+// import { useDispatch } from "react-redux";
 
 const Login = () => {
+  // const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<ILog>();
+  const [login, { data, error }] = useLoginMutation();
 
-  const handleLogin = (payload: ILog) => {
-    console.log(payload);
+  const navigate = useNavigate();
+
+  const handleLogin = (data: ILog) => {
+    login({
+      email: data.email,
+      password: data.password,
+    });
   };
+
+  useEffect(() => {
+    if (data?.data?.accessToken && data?.data?.user) {
+      navigate("/");
+    }
+  }, [data, navigate]);
 
   return (
     <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
@@ -92,6 +110,11 @@ const Login = () => {
                         className="block w-full py-4 pl-10 pr-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
                       />
                     </div>
+                  </div>
+                  <div>
+                    {error && (
+                      <p className="text-red-500">{error?.data?.message}</p>
+                    )}
                   </div>
                   <div className="bg-red-600 text-white text-center">
                     <button

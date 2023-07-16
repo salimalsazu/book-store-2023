@@ -8,8 +8,6 @@ import SingleBookCard from "./SingleBookCard";
 const BookCard = () => {
   const { data: books, isLoading, isError } = useGetBooksQuery(undefined);
 
-  console.log(isLoading);
-
   let gettingBooks;
 
   if (isLoading) {

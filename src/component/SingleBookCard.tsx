@@ -5,8 +5,6 @@ import { IProps } from "../Interface/book.interface";
 const SingleBookCard = ({ book }: IProps) => {
   const { author, title, genre, image, _id } = book;
 
-  console.log("books.....", book);
-
   return (
     <div>
       <Link to={`/books/${_id}`}>

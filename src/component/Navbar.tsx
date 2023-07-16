@@ -1,6 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/hook";
+import { useDispatch } from "react-redux";
+import { userLoggedOut } from "../redux/features/auth/authSlice";
 
 const Navbar = () => {
+  const { user } = useAppSelector((state) => state?.auth || {});
+
+  console.log(user);
+
+  const disptach = useDispatch();
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    disptach(userLoggedOut());
+    localStorage.removeItem("auth");
+    navigate("/login");
+  };
+
   return (
     <header className="bg-black border-b border-gray-700">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -63,29 +79,43 @@ const Navbar = () => {
               {" "}
               My Book{" "}
             </Link>
-            <Link
-              to="/login"
-              title=""
-              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
-            >
-              {" "}
-              Sign In{" "}
-            </Link>
-            <button
-              title=""
-              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
-            >
-              {" "}
-              Logout{" "}
-            </button>
-            <Link
-              to="/Registration"
-              title=""
-              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
-            >
-              {" "}
-              Sign Up{" "}
-            </Link>
+            {!user && (
+              <Link
+                to="/login"
+                title=""
+                className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+              >
+                {" "}
+                Sign In{" "}
+              </Link>
+            )}
+            {user && (
+              <button
+                onClick={logOut}
+                title=""
+                className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+              >
+                {" "}
+                Logout{" "}
+              </button>
+            )}
+            {!user && (
+              <Link
+                to="/Registration"
+                title=""
+                className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+              >
+                {" "}
+                Sign Up{" "}
+              </Link>
+            )}
+            <div>
+              {user && (
+                <p className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70">
+                  {user?.name}
+                </p>
+              )}
+            </div>
           </div>
         </nav>
         {/* xs to lg */}
@@ -142,6 +172,10 @@ const Navbar = () => {
               {" "}
               Sign In{" "}
             </a>
+
+            <div>
+              <p>Salim Al Sazu</p>
+            </div>
           </nav>
         </nav>
       </div>
