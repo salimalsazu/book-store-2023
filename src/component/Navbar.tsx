@@ -45,7 +45,7 @@ const Navbar = () => {
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
-             All Books{" "}
+              All Books{" "}
             </Link>
             <Link
               to="/addBook"
@@ -76,7 +76,7 @@ const Navbar = () => {
               className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
             >
               {" "}
-             Logout{" "}
+              Logout{" "}
             </button>
             <Link
               to="/Registration"
@@ -124,7 +124,7 @@ const Navbar = () => {
               className="py-2 font-medium text-white transition-all duration-200 focus:text-opacity-70"
             >
               {" "}
-             All Books{" "}
+              All Books{" "}
             </Link>
             <a
               href="#"

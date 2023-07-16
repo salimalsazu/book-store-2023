@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { IReg } from "@/Interface/login";
+import { IReg } from "../Interface/login";
+import { useSignUpMutation } from "../redux/features/users/userApi";
 
 const Registration = () => {
   const { register, handleSubmit } = useForm<IReg>();
 
-  const handleReg = (payload: IReg) => {
-    console.log(payload);
+  const [signup] = useSignUpMutation();
+
+  const handleReg = (data: IReg) => {
+    console.log(data);
+    signup(data);
   };
 
   return (
@@ -45,7 +49,7 @@ const Registration = () => {
                   <div className="mt-2.5">
                     <input
                       type="text"
-                      {...register("name", { required: true })}
+                      {...register("name")}
                       placeholder="Enter your full name"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
@@ -61,7 +65,7 @@ const Registration = () => {
                   <div className="mt-2.5">
                     <input
                       type="email"
-                      {...register("email", { required: true })}
+                      {...register("email")}
                       placeholder="Enter email to get started"
                       className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600"
                     />
