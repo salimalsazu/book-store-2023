@@ -3,7 +3,7 @@ import "../style/BookCard.css";
 import { IProps } from "../Interface/book.interface";
 
 const SingleBookCard = ({ book }: IProps) => {
-  const { author, title, genre, image, _id } = book;
+  const { author, title, genre, image, _id, publication } = book;
 
   return (
     <div>
@@ -29,7 +29,7 @@ const SingleBookCard = ({ book }: IProps) => {
               <p className="lws-author">{author}</p>
               <p className="lws-author">Genre: {genre} </p>
 
-              <p className="lws-price">Publication: July 13, 2023</p>
+              <p className="lws-price">Publication: {publication}</p>
             </div>
           </div>
         </div>
