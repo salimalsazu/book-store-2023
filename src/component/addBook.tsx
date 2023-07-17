@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { useAddBookMutation } from "../redux/features/books/bookApi";
 import { useAppSelector } from "../redux/hook";
+import { IUser, RootState } from "../Interface/login";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface IAddNewBook {
   title: string;
@@ -13,36 +15,35 @@ interface IAddNewBook {
 }
 
 const AddNewBook = () => {
-  const { user } = useAppSelector((state) => state?.auth || {});
+  const user: IUser | null | undefined = useAppSelector(
+    (state: RootState) => state.auth
+  );
 
-  console.log(user);
+  const navigate = useNavigate();
 
-  const [addBook, { isError, error }] = useAddBookMutation();
+  const [addBook] = useAddBookMutation();
 
   const { register, handleSubmit } = useForm<IAddNewBook>();
 
   const handleAddBook = (data: IAddNewBook) => {
-    const book = {
-      title: data.title,
-      author: data.author,
-      genre: data.genre,
-      image: data.image,
-      publication: data.publication,
-      email: user?.email,
-      name: user?.name,
-      userId: user?._id,
-    };
-
-    console.log(book);
-    addBook(book);
-    toast.success("Book added Successfully!", { autoClose: 400 });
+    try {
+      const book = {
+        title: data.title,
+        author: data.author,
+        genre: data.genre,
+        image: data.image,
+        publication: data.publication,
+        email: user?.email,
+        name: user?.name,
+        userId: user?._id,
+      };
+      addBook(book).unwrap();
+      toast.success("You book is added successfully");
+      navigate("/books");
+    } catch (error) {
+      toast.error("This is an error!");
+    }
   };
-
-  let inputError = null;
-
-  if (isError && error) {
-    inputError = <p>{error?.data?.errorMessages[0].message}</p>;
-  }
 
   return (
     <section className="px-[15px] lg:px-0 py-[50px] mt-[60px] bg-light-bg">
@@ -139,9 +140,7 @@ const AddNewBook = () => {
               />
             </div>
           </div>
-          <div>
-            <p className="text-red-500">{inputError}</p>
-          </div>
+          <div>{/* <p className="text-red-500">{inputError}</p> */}</div>
           <div className="mt-5 bg-blue-500 text-white w-32">
             <button
               className="text-lg font-medium bg-blue-500 text-white bg-etlc-theme py-2 px-5"

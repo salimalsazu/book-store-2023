@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../redux/hook";
 import { useDispatch } from "react-redux";
 import { userLoggedOut } from "../redux/features/auth/authSlice";
+import { IUser, RootState } from "../Interface/login";
 
 const Navbar = () => {
-  const { user } = useAppSelector((state) => state?.auth || {});
-
+  const user: IUser | null | undefined = useAppSelector(
+    (state: RootState) => state.auth
+  );
   console.log(user);
 
   const disptach = useDispatch();
@@ -79,7 +81,7 @@ const Navbar = () => {
               {" "}
               My Book{" "}
             </Link>
-            {!user && (
+            {!user?.accessToken && (
               <Link
                 to="/login"
                 title=""
@@ -89,7 +91,7 @@ const Navbar = () => {
                 Sign In{" "}
               </Link>
             )}
-            {user && (
+            {user?.accessToken && (
               <button
                 onClick={logOut}
                 title=""
@@ -99,7 +101,7 @@ const Navbar = () => {
                 Logout{" "}
               </button>
             )}
-            {!user && (
+            {!user?.accessToken && (
               <Link
                 to="/Registration"
                 title=""
@@ -110,9 +112,9 @@ const Navbar = () => {
               </Link>
             )}
             <div>
-              {user && (
+              {user?.accessToken && (
                 <p className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70">
-                  {user?.name}
+                  {user?.user?.name}
                 </p>
               )}
             </div>
@@ -172,10 +174,6 @@ const Navbar = () => {
               {" "}
               Sign In{" "}
             </a>
-
-            <div>
-              <p>Salim Al Sazu</p>
-            </div>
           </nav>
         </nav>
       </div>

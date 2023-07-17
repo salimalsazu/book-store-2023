@@ -7,6 +7,7 @@ export type IBook = {
   price?: number;
   image?: string;
   description?: string;
+  userId?: string;
 };
 
 export interface IProps {

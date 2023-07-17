@@ -3,15 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ILog } from "../Interface/login";
 import { useLoginMutation } from "../redux/features/auth/authApi";
-import { useEffect, useState } from "react";
-// import { useEffect } from "react";
-// import { toast } from "react-toastify";
-// import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Login = () => {
   // const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<ILog>();
-  const [login, { data, error }] = useLoginMutation();
+
+  const [login, { data, isError}] = useLoginMutation();
+
 
   const navigate = useNavigate();
 
@@ -27,6 +26,14 @@ const Login = () => {
       navigate("/");
     }
   }, [data, navigate]);
+
+  let manualError;
+
+  if (isError) {
+    manualError = (
+      <div className="text-red-500">User or password does not match</div>
+    );
+  }
 
   return (
     <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
@@ -111,11 +118,12 @@ const Login = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    {error && (
-                      <p className="text-red-500">{error?.data?.message}</p>
+                  {/* <div>
+                    {isError && (
+                      <p className="text-red-500">{error?.message}</p>
                     )}
-                  </div>
+                  </div> */}
+                  <div>{manualError}</div>
                   <div className="bg-red-600 text-white text-center">
                     <button
                       type="submit"

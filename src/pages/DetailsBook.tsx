@@ -5,30 +5,105 @@ import DetailsBooksPage from "../component/DetailsBooksPage";
 import Review from "../component/Review";
 import {
   useGetReviewsQuery,
+  usePostReviewMutation,
   useSingleBookQuery,
 } from "../redux/features/books/bookApi";
 import { IBook } from "../Interface/book.interface";
+import { useForm } from "react-hook-form";
+import { useAppSelector } from "../redux/hook";
+import { IUser, RootState } from "../Interface/login";
+
+export type IReview = {
+  name?: string;
+  email?: string;
+  image?: string | undefined;
+  description: string;
+  _id?: string;
+  createdAt?: string;
+};
 
 const DetailsBook = () => {
+  const user: IUser | null | undefined = useAppSelector(
+    (state: RootState) => state.auth
+  );
+
+  const { register, handleSubmit } = useForm<IReview>();
+
   const { id } = useParams();
+
+  const [postReview] = usePostReviewMutation();
+
+  const postMyReview = (data: IReview) => {
+    const review = {
+      id: id,
+      data: {
+        name: user?.name,
+        description: data.description,
+        email: user?.email,
+      },
+    };
+
+    console.log(review);
+
+    postReview(review);
+  };
 
   const { data } = useSingleBookQuery(id);
 
-  const { data: review } = useGetReviewsQuery(id);
-
-  console.log(review);
+  const {
+    data: reviews,
+    isLoading,
+    isError,
+  } = useGetReviewsQuery(id, { pollingInterval: 2000 });
 
   const details: IBook = data?.data;
 
+  console.log(details);
 
-  
+  let gettingReviews;
 
+  if (isLoading) {
+    gettingReviews = (
+      <p className="items-center text-2xl font-extrabold">Loading...</p>
+    );
+  }
+
+  if (!isError && !isLoading && reviews?.data?.length == 0) {
+    gettingReviews = (
+      <div className="items-center text-2xl font-extrabold">
+        No Reviews Found
+      </div>
+    );
+  }
+
+  if (!isLoading && reviews?.data?.length > 0) {
+    gettingReviews = reviews?.data.map((review: IReview) => (
+      <Review review={review} key={review._id} />
+    ));
+  }
 
   return (
     <div className="mx-20">
-      <DetailsBooksPage details={details} />
+      <DetailsBooksPage details={details} user={user} />
       <hr className="border-black border-1 mx-10" />
-      <Review />
+      <div>
+        <h1 className="my-10 text-lg">Review About This Product</h1>
+      </div>
+      {gettingReviews}
+      <div>
+        <div className="border border-gray-400 relative h-32 mt-10">
+          <form onSubmit={handleSubmit(postMyReview)}>
+            <textarea
+              className="w-full h-32 p-2"
+              placeholder="Write your comment in here..."
+              {...register("description")}
+            />
+            <div className="bg-red-500 text-white px-6 py-2 absolute right-3 bottom-3">
+              <button type="submit">Review</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

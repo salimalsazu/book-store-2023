@@ -7,7 +7,12 @@ const myToken = JSON.parse(token);
 
 const bookApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getBooks: builder.query({ query: () => "/books" }),
+    getBooks: builder.query({
+      query: ({ filterName, filterValue }) =>
+        `/books?${filterName}=${filterValue}`,
+      providesTags: ["books"],
+    }),
+    // getBooks: builder.query({ query: () => "/books" }),
     myBooks: builder.query({
       query: () => ({
         url: "/books/mybooks",
@@ -25,8 +30,13 @@ const bookApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-
-      // invalidatesTags: ["reviews"],
+    }),
+    postReview: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/books/reviews/${id}`,
+        method: "POST",
+        body: data,
+      }),
     }),
     getReviews: builder.query({
       query: (id) => `/books/reviews/${id}`,
@@ -41,4 +51,5 @@ export const {
   useAddBookMutation,
   useMyBooksQuery,
   useGetReviewsQuery,
+  usePostReviewMutation,
 } = bookApi;

@@ -6,13 +6,15 @@ import { IBook } from "../Interface/book.interface";
 import SingleBookCard from "../component/SingleBookCard";
 import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import { IoAddCircle } from "react-icons/io5";
+import { useState } from "react";
 
 const Books = () => {
-  const {
-    data: books,
-    isLoading,
-    isError,
-  } = useGetBooksQuery(undefined, { pollingInterval: 1000 });
+  const [filterText, setFilterText] = useState({
+    filterName: "",
+    filterValue: "",
+  });
+
+  const { data: books, isLoading, isError } = useGetBooksQuery(filterText);
 
   console.log(isLoading);
 
@@ -33,6 +35,13 @@ const Books = () => {
       <SingleBookCard book={book} key={book._id} />
     ));
   }
+
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const filterName = e.target.name;
+    const filterValue = e.target.value;
+    if (filterValue) setFilterText({ filterName, filterValue });
+    if (!filterValue) setFilterText({ filterName: "", filterValue: "" });
+  };
 
   return (
     <section className="px-[15px] lg:px-0 py-16 font-inter mt-[60px] bg-[#f6f6f7]">
@@ -62,12 +71,14 @@ const Books = () => {
                   <input
                     type="text"
                     placeholder="Search"
+                    name="searchTerm"
+                    onChange={(e) => handleFilter(e)}
                     className="w-full border border-[#dadada] py-2 px-3 focus:outline-none focus:ring-1 focus:ring-etlc-theme"
                   />
                 </div>
               </div>
             </div>
-            {/* Genre Filtering */}
+
             <div className="border-b border-[#dadada]">
               <div className="border-b border-[#dadada] py-3">
                 <h4 className="text-lg font-semibold text-[#333] px-5 capitalize">
@@ -77,67 +88,31 @@ const Books = () => {
               <div className="py-5 space-y-1">
                 <div className="flex items-center px-5">
                   <input
-                    type="checkbox"
-                    name="category"
-                    id="action"
-                    className="mr-2"
+                    type="text"
+                    placeholder="Filter"
+                    name="genre"
+                    onChange={(e) => handleFilter(e)}
+                    className="w-full border border-[#dadada] py-2 px-3 focus:outline-none focus:ring-1 focus:ring-etlc-theme"
                   />
-                  <label htmlFor="action">Action</label>
-                </div>
-                <div className="flex items-center px-5">
-                  <input
-                    type="checkbox"
-                    name="category"
-                    id="drama"
-                    className="mr-2"
-                  />
-                  <label htmlFor="drama">Drama</label>
-                </div>
-                <div className="flex items-center px-5">
-                  <input
-                    type="checkbox"
-                    name="category"
-                    id="comedy"
-                    className="mr-2"
-                  />
-                  <label htmlFor="comedy">Comedy</label>
                 </div>
               </div>
             </div>
-            {/* Genre Filtering */}
-            <div>
+
+            <div className="border-b border-[#dadada]">
               <div className="border-b border-[#dadada] py-3">
                 <h4 className="text-lg font-semibold text-[#333] px-5 capitalize">
-                  publication year
+                  Publication Year
                 </h4>
               </div>
               <div className="py-5 space-y-1">
                 <div className="flex items-center px-5">
                   <input
-                    type="checkbox"
-                    name="category"
-                    id="date1"
-                    className="mr-2"
+                    type="text"
+                    placeholder="Filter"
+                    name="publication"
+                    onChange={(e) => handleFilter(e)}
+                    className="w-full border border-[#dadada] py-2 px-3 focus:outline-none focus:ring-1 focus:ring-etlc-theme"
                   />
-                  <label htmlFor="date1">22 June 2023</label>
-                </div>
-                <div className="flex items-center px-5">
-                  <input
-                    type="checkbox"
-                    name="category"
-                    id="date2"
-                    className="mr-2"
-                  />
-                  <label htmlFor="date2">22 June 2023</label>
-                </div>
-                <div className="flex items-center px-5">
-                  <input
-                    type="checkbox"
-                    name="category"
-                    id="date3"
-                    className="mr-2"
-                  />
-                  <label htmlFor="date3">22 June 2023</label>
                 </div>
               </div>
             </div>
@@ -155,3 +130,78 @@ const Books = () => {
 };
 
 export default Books;
+
+//  {/* Genre Filtering */}
+//  <div className="border-b border-[#dadada]">
+//  <div className="border-b border-[#dadada] py-3">
+//    <h4 className="text-lg font-semibold text-[#333] px-5 capitalize">
+//      Genre
+//    </h4>
+//  </div>
+//  <div className="py-5 space-y-1">
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="action"
+//        className="mr-2"
+//      />
+//      <label htmlFor="action">Action</label>
+//    </div>
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="drama"
+//        className="mr-2"
+//      />
+//      <label htmlFor="drama">Drama</label>
+//    </div>
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="comedy"
+//        className="mr-2"
+//      />
+//      <label htmlFor="comedy">Comedy</label>
+//    </div>
+//  </div>
+// </div>
+// {/* Genre Filtering */}
+// <div>
+//  <div className="border-b border-[#dadada] py-3">
+//    <h4 className="text-lg font-semibold text-[#333] px-5 capitalize">
+//      publication year
+//    </h4>
+//  </div>
+//  <div className="py-5 space-y-1">
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="date1"
+//        className="mr-2"
+//      />
+//      <label htmlFor="date1">22 June 2023</label>
+//    </div>
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="date2"
+//        className="mr-2"
+//      />
+//      <label htmlFor="date2">22 June 2023</label>
+//    </div>
+//    <div className="flex items-center px-5">
+//      <input
+//        type="checkbox"
+//        name="category"
+//        id="date3"
+//        className="mr-2"
+//      />
+//      <label htmlFor="date3">22 June 2023</label>
+//    </div>
+//  </div>
+// </div>

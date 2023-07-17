@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { api } from "../../api/apiSlice";
 import { userLoggedIn } from "./authSlice";
 
@@ -9,7 +10,7 @@ export const authApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+      async onQueryStarted(_arg: any, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
           localStorage.setItem(
@@ -36,7 +37,7 @@ export const authApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+      async onQueryStarted(_arg: any, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
 

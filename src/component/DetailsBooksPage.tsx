@@ -4,12 +4,14 @@ import { BiEdit } from "react-icons/bi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { IBook } from "../Interface/book.interface";
+import { IUser } from "../Interface/login";
 
 interface IDetailes {
   details: IBook;
+  user: IUser | null | undefined;
 }
 
-const DetailsBooksPage = ({ details }: IDetailes) => {
+const DetailsBooksPage = ({ details, user }: IDetailes) => {
   return (
     <section className="flex lg:flex-row  justify-center my-10 mx-10 ">
       <div>
@@ -25,14 +27,19 @@ const DetailsBooksPage = ({ details }: IDetailes) => {
             <button className="bg-red-500 text-white px-7 py-1 ">Sale</button>
           </div>
           <div className="flex item center gap-2 text-2xl ">
-            <Link to="" className="border flex items-center p-2 ">
-              <BiEdit />
-              <span>Edit</span>
-            </Link>
-            <button className="border flex items-center p-2">
-              <MdOutlineDelete />
-              <span>Delete</span>
-            </button>
+            {details?.userId === user?._id && (
+              <Link to="" className="border flex items-center p-2 ">
+                <BiEdit />
+                <span>Edit</span>
+              </Link>
+            )}
+
+            {details?.userId === user?._id && (
+              <button className="border flex items-center p-2">
+                <MdOutlineDelete />
+                <span>Delete</span>
+              </button>
+            )}
             <button className="border flex items-center p-2">
               <AiOutlineHeart />
               <span>Wish</span>
