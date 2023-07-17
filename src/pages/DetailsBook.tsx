@@ -3,7 +3,10 @@
 import { useParams } from "react-router-dom";
 import DetailsBooksPage from "../component/DetailsBooksPage";
 import Review from "../component/Review";
-import { useSingleBookQuery } from "../redux/features/books/bookApi";
+import {
+  useGetReviewsQuery,
+  useSingleBookQuery,
+} from "../redux/features/books/bookApi";
 import { IBook } from "../Interface/book.interface";
 
 const DetailsBook = () => {
@@ -11,9 +14,15 @@ const DetailsBook = () => {
 
   const { data } = useSingleBookQuery(id);
 
+  const { data: review } = useGetReviewsQuery(id);
+
+  console.log(review);
+
   const details: IBook = data?.data;
 
-  console.log(details);
+
+  
+
 
   return (
     <div className="mx-20">

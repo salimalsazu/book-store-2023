@@ -29,7 +29,7 @@ const bookApi = api.injectEndpoints({
       // invalidatesTags: ["reviews"],
     }),
     getReviews: builder.query({
-      query: (id) => `/reviews/${id}`,
+      query: (id) => `/books/reviews/${id}`,
       // providesTags: ["reviews"],
     }),
   }),
@@ -40,4 +40,5 @@ export const {
   useSingleBookQuery,
   useAddBookMutation,
   useMyBooksQuery,
+  useGetReviewsQuery,
 } = bookApi;
