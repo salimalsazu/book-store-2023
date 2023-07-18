@@ -1,7 +1,7 @@
 import { IBook } from "../Interface/book.interface";
 import { IUser } from "../Interface/login";
 import { useMyWishQuery } from "../redux/features/books/bookApi";
-import WishTable from "./wishTable";
+import WishTable from "./WishTable";
 
 export interface IWish {
   _id: string;

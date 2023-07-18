@@ -20,6 +20,7 @@ const bookApi = api.injectEndpoints({
           authorization: myToken?.accessToken,
         },
       }),
+      providesTags: ["books"],
     }),
     singleBook: builder.query({
       query: (id) => `/books/${id}`,
@@ -75,6 +76,23 @@ const bookApi = api.injectEndpoints({
       }),
       invalidatesTags: ["wish"],
     }),
+    addReading: builder.mutation({
+      query: (data) => ({
+        url: `/read`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["read"],
+    }),
+    myReading: builder.query({
+      query: () => ({
+        url: "/read",
+        headers: {
+          authorization: myToken?.accessToken,
+        },
+      }),
+      providesTags: ["read"],
+    }),
   }),
 });
 
@@ -89,4 +107,6 @@ export const {
   useDeleteBookMutation,
   useAddWishMutation,
   useMyWishQuery,
+  useAddReadingMutation,
+  useMyReadingQuery,
 } = bookApi;

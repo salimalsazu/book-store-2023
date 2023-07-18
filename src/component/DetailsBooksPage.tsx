@@ -3,6 +3,7 @@
 import books from "../assets/the story.jpg";
 import { MdOutlineDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
+import { BsFillBookFill } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { IBook } from "../Interface/book.interface";
@@ -13,9 +14,16 @@ interface IDetailes {
   user: IUser | null | undefined;
   handleDeleteBook: any;
   addWish: any;
+  addRead: any;
 }
 
-const DetailsBooksPage = ({ details, user, handleDeleteBook, addWish }: IDetailes) => {
+const DetailsBooksPage = ({
+  details,
+  user,
+  handleDeleteBook,
+  addWish,
+  addRead,
+}: IDetailes) => {
   return (
     <section className="flex justify-center my-10 lg:mx-10 ">
       <div>
@@ -50,6 +58,10 @@ const DetailsBooksPage = ({ details, user, handleDeleteBook, addWish }: IDetaile
             <button onClick={addWish} className="border flex items-center p-2">
               <AiOutlineHeart />
               <span>Wish</span>
+            </button>
+            <button onClick={addRead} className="border flex items-center p-2">
+              <BsFillBookFill />
+              <span className="ml-1">Read</span>
             </button>
           </div>
         </div>

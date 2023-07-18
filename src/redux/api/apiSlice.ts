@@ -8,5 +8,5 @@ export const api = createApi({
     baseUrl: "http://localhost:7000/api/v1",
   }),
   endpoints: () => ({}),
-  tagTypes: ["books", "wish"],
+  tagTypes: ["books", "wish", "read"],
 });

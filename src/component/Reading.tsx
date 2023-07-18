@@ -1,15 +1,43 @@
+import { IBook } from "../Interface/book.interface";
+import { IUser } from "../Interface/login";
+import { useMyReadingQuery } from "../redux/features/books/bookApi";
+import ReadingTable from "./ReadingTable";
+
+export interface IRead {
+  _id: string;
+  bookId?: IBook;
+  userId?: IUser;
+  status: string;
+}
+
 const Reading = () => {
+  const { data, isLoading, isError } = useMyReadingQuery(undefined);
+
+  console.log("data...", data);
+
+  let myRead;
+
+  if (isLoading) {
+    myRead = <div>Loading....</div>;
+  }
+
+  if (!isError && !isLoading && data?.data?.length === 0) {
+    myRead = (
+      <div className="items-center text-2xl font-extrabold">No Books Found</div>
+    );
+  }
+
+  if (!isLoading && data?.data?.length > 0) {
+    myRead = data?.data?.map((read: IRead) => (
+      <ReadingTable read={read} key={read._id} />
+    ));
+  }
+
   return (
     <div>
       <table className="w-full divide-y divide-gray-200">
         <thead className="bg-gray-100 text-red-500 font-extrabold">
           <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Image
-            </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -42,36 +70,7 @@ const Reading = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          <tr>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <img
-                src="book-image.jpg"
-                alt="Book Image"
-                className="h-16 w-16 rounded-full"
-              />
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm font-medium text-gray-900">
-                The Book Title
-              </div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Author Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Genre Name</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">2023-07-14</div>
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap">
-              <div className="text-sm text-gray-900">Reading</div>
-            </td>
-          </tr>
-
-          {/* Add more rows here */}
-        </tbody>
+        <tbody className="bg-white divide-y divide-gray-200">{myRead}</tbody>
       </table>
     </div>
   );

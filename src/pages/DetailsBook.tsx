@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DetailsBooksPage from "../component/DetailsBooksPage";
 import Review from "../component/Review";
 import {
+  useAddReadingMutation,
   useAddWishMutation,
   useDeleteBookMutation,
   useGetReviewsQuery,
@@ -15,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IUser, RootState } from "../Interface/login";
 import Swal from "sweetalert2";
+import { BsWindowSidebar } from "react-icons/bs";
 
 export type IReview = {
   name?: string;
@@ -121,6 +123,39 @@ const DetailsBook = () => {
     }
   };
 
+  //Reading part
+
+  const [addReadBook, { isSuccess: readSuccess, isError: readError }] =
+    useAddReadingMutation();
+
+  const addRead = () => {
+    const reading = {
+      bookId: details?._id,
+      userId: user?.user?._id,
+    };
+    addReadBook(reading);
+
+    if (readSuccess) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "You added this to Read list",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    if (readError) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "somthing has occured",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div className="mx-20">
       <DetailsBooksPage
@@ -128,6 +163,7 @@ const DetailsBook = () => {
         user={user}
         handleDeleteBook={handleDeleteBook}
         addWish={addWish}
+        addRead={addRead}
       />
       <hr className="border-black border-1 mx-10" />
       <div>

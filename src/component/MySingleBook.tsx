@@ -5,8 +5,6 @@ import MyBooksTable from "./MyBooksTable";
 const MySingleBook = () => {
   const { data, isLoading, isError } = useMyBooksQuery(undefined);
 
-  console.log(data);
-
   let myBooks;
 
   if (isLoading) {
