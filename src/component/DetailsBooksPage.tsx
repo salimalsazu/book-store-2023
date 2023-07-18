@@ -12,9 +12,10 @@ interface IDetailes {
   details: IBook;
   user: IUser | null | undefined;
   handleDeleteBook: any;
+  addWish: any;
 }
 
-const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
+const DetailsBooksPage = ({ details, user, handleDeleteBook, addWish }: IDetailes) => {
   return (
     <section className="flex justify-center my-10 lg:mx-10 ">
       <div>
@@ -46,7 +47,7 @@ const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
                 <span>Delete</span>
               </button>
             )}
-            <button className="border flex items-center p-2">
+            <button onClick={addWish} className="border flex items-center p-2">
               <AiOutlineHeart />
               <span>Wish</span>
             </button>

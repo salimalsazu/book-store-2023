@@ -33,9 +33,9 @@ const AddNewBook = () => {
         genre: data.genre,
         image: data.image,
         publication: data.publication,
-        email: user?.email,
-        name: user?.name,
-        userId: user?._id,
+        email: user?.user?.email,
+        name: user?.user?.name,
+        userId: user?.user?._id,
       };
       addBook(book).unwrap();
       toast.success("You book is added successfully");

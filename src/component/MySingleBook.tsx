@@ -3,10 +3,9 @@ import { useMyBooksQuery } from "../redux/features/books/bookApi";
 import MyBooksTable from "./MyBooksTable";
 
 const MySingleBook = () => {
-  const { data, isLoading, isError } = useMyBooksQuery(undefined, {
-    pollingInterval: 1000,
-  });
+  const { data, isLoading, isError } = useMyBooksQuery(undefined);
 
+  console.log(data);
 
   let myBooks;
 

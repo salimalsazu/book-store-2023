@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DetailsBooksPage from "../component/DetailsBooksPage";
 import Review from "../component/Review";
 import {
+  useAddWishMutation,
   useDeleteBookMutation,
   useGetReviewsQuery,
   usePostReviewMutation,
@@ -13,6 +14,7 @@ import { IBook } from "../Interface/book.interface";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IUser, RootState } from "../Interface/login";
+import Swal from "sweetalert2";
 
 export type IReview = {
   name?: string;
@@ -89,12 +91,43 @@ const DetailsBook = () => {
     navigate("/books");
   };
 
+  const [addWishList, { isSuccess, isError: wishError }] = useAddWishMutation();
+
+  const addWish = () => {
+    const wish = {
+      bookId: details?._id,
+      userId: user?.user?._id,
+    };
+    addWishList(wish);
+
+    if (isSuccess) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "You added this to wish list",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    if (wishError) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "somthing occured wrong",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <div className="mx-20">
       <DetailsBooksPage
         details={details}
         user={user}
         handleDeleteBook={handleDeleteBook}
+        addWish={addWish}
       />
       <hr className="border-black border-1 mx-10" />
       <div>

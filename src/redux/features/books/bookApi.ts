@@ -58,6 +58,23 @@ const bookApi = api.injectEndpoints({
       }),
       invalidatesTags: ["books"],
     }),
+    myWish: builder.query({
+      query: () => ({
+        url: "/wish",
+        headers: {
+          authorization: myToken?.accessToken,
+        },
+      }),
+      providesTags: ["wish"],
+    }),
+    addWish: builder.mutation({
+      query: (data) => ({
+        url: `/wish`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["wish"],
+    }),
   }),
 });
 
@@ -70,4 +87,6 @@ export const {
   usePostReviewMutation,
   useEditBookMutation,
   useDeleteBookMutation,
+  useAddWishMutation,
+  useMyWishQuery,
 } = bookApi;
