@@ -16,7 +16,6 @@ import { useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IUser, RootState } from "../Interface/login";
 import Swal from "sweetalert2";
-import { BsWindowSidebar } from "react-icons/bs";
 
 export type IReview = {
   name?: string;

@@ -1,4 +1,5 @@
 import { IRead } from "./Reading";
+import { GrStatusGood } from "react-icons/gr";
 
 interface IReadProps {
   read?: IRead;
@@ -23,6 +24,11 @@ const ReadingTable = ({ read }: IReadProps) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="text-sm text-gray-900">{read?.status}</div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm text-gray-900 items-center">
+          <GrStatusGood className="text-center text-2xl" />
+        </div>
       </td>
     </tr>
   );

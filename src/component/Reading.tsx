@@ -11,6 +11,8 @@ export interface IRead {
 }
 
 const Reading = () => {
+
+
   const { data, isLoading, isError } = useMyReadingQuery(undefined);
 
   console.log("data...", data);
@@ -67,6 +69,12 @@ const Reading = () => {
               className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Status
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Change Status
             </th>
           </tr>
         </thead>
