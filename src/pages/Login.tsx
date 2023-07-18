@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ILog } from "../Interface/login";
 import { useLoginMutation } from "../redux/features/auth/authApi";
@@ -12,7 +13,9 @@ const Login = () => {
 
   const [login, { data, isError }] = useLoginMutation();
 
+  //navigate for private route & others
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleLogin = (data: ILog) => {
     login({
@@ -23,7 +26,7 @@ const Login = () => {
 
   useEffect(() => {
     if (data?.data?.accessToken && data?.data?.user) {
-      navigate("/");
+      navigate(state.path || "/");
 
       Swal.fire({
         position: "top-end",

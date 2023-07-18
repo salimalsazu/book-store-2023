@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DetailsBooksPage from "../component/DetailsBooksPage";
 import Review from "../component/Review";
 import {
+  useDeleteBookMutation,
   useGetReviewsQuery,
   usePostReviewMutation,
   useSingleBookQuery,
@@ -12,6 +13,7 @@ import { IBook } from "../Interface/book.interface";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IUser, RootState } from "../Interface/login";
+import { useEffect } from "react";
 
 export type IReview = {
   name?: string;
@@ -26,6 +28,8 @@ const DetailsBook = () => {
   const user: IUser | null | undefined = useAppSelector(
     (state: RootState) => state.auth
   );
+
+  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm<IReview>();
 
@@ -43,7 +47,7 @@ const DetailsBook = () => {
       },
     };
 
-    console.log(review);
+    // console.log(review);
 
     postReview(review);
   };
@@ -82,9 +86,21 @@ const DetailsBook = () => {
     ));
   }
 
+  const [deleteBook] = useDeleteBookMutation();
+
+  const handleDeleteBook = () => {
+    deleteBook(id);
+    window.alert(`Are you sure you want delete ${details.title}`);
+    navigate("/books");
+  };
+
   return (
     <div className="mx-20">
-      <DetailsBooksPage details={details} user={user} />
+      <DetailsBooksPage
+        details={details}
+        user={user}
+        handleDeleteBook={handleDeleteBook}
+      />
       <hr className="border-black border-1 mx-10" />
       <div>
         <h1 className="my-10 text-lg">Review About This Product</h1>

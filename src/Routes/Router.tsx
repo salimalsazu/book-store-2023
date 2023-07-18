@@ -11,6 +11,7 @@ import MySingleBook from "../component/MySingleBook";
 import WishList from "../component/WishList";
 import Reading from "../component/Reading";
 import PrivateRoute from "./PrivateRoute";
+import EditBook from "../component/EditBook";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/addBook",
         element: <AddBook />,
+      },
+      {
+        path: "/editbook/:id",
+        element: <EditBook />,
       },
       {
         path: "/login",

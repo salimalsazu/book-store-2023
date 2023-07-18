@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 import books from "../assets/the story.jpg";
 import { MdOutlineDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
@@ -9,9 +11,10 @@ import { IUser } from "../Interface/login";
 interface IDetailes {
   details: IBook;
   user: IUser | null | undefined;
+  handleDeleteBook: any;
 }
 
-const DetailsBooksPage = ({ details, user }: IDetailes) => {
+const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
   return (
     <section className="flex lg:flex-row  justify-center my-10 mx-10 ">
       <div>
@@ -28,14 +31,20 @@ const DetailsBooksPage = ({ details, user }: IDetailes) => {
           </div>
           <div className="flex item center gap-2 text-2xl ">
             {details?.userId === user?._id && (
-              <Link to="" className="border flex items-center p-2 ">
+              <Link
+                to={`/editbook/${details?._id}`}
+                className="border flex items-center p-2 "
+              >
                 <BiEdit />
                 <span>Edit</span>
               </Link>
             )}
 
             {details?.userId === user?._id && (
-              <button className="border flex items-center p-2">
+              <button
+                onClick={handleDeleteBook}
+                className="border flex items-center p-2"
+              >
                 <MdOutlineDelete />
                 <span>Delete</span>
               </button>
