@@ -10,6 +10,7 @@ import AddBook from "../pages/AddBook";
 import MySingleBook from "../component/MySingleBook";
 import WishList from "../component/WishList";
 import Reading from "../component/Reading";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/mybooks",
-        element: <MyBooks />,
+        element: (
+          <PrivateRoute>
+            <MyBooks />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/mybooks",
@@ -44,7 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/books/:id",
-        element: <DetailsBook />,
+        element: (
+          <PrivateRoute>
+            <DetailsBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addBook",

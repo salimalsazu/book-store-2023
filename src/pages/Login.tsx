@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { ILog } from "../Interface/login";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 const Login = () => {
   // const dispatch = useDispatch();
   const { register, handleSubmit } = useForm<ILog>();
 
-  const [login, { data, isError}] = useLoginMutation();
-
+  const [login, { data, isError }] = useLoginMutation();
 
   const navigate = useNavigate();
 
@@ -24,6 +24,14 @@ const Login = () => {
   useEffect(() => {
     if (data?.data?.accessToken && data?.data?.user) {
       navigate("/");
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login Successfully",
+        showConfirmButton: false,
+        timer: 1000,
+      });
     }
   }, [data, navigate]);
 

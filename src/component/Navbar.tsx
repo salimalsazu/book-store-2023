@@ -8,7 +8,7 @@ const Navbar = () => {
   const user: IUser | null | undefined = useAppSelector(
     (state: RootState) => state.auth
   );
-  console.log(user);
+  // console.log(user);
 
   const disptach = useDispatch();
   const navigate = useNavigate();
@@ -73,14 +73,16 @@ const Navbar = () => {
               {" "}
               Add Book{" "}
             </Link>
-            <Link
-              to="/mybooks"
-              title=""
-              className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
-            >
-              {" "}
-              My Book{" "}
-            </Link>
+            {user?.accessToken && (
+              <Link
+                to="/mybooks"
+                title=""
+                className="text-sm font-medium text-white transition-all duration-200 lg:text-base hover:text-opacity-70 focus:text-opacity-70"
+              >
+                {" "}
+                My Book{" "}
+              </Link>
+            )}
             {!user?.accessToken && (
               <Link
                 to="/login"

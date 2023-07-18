@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { IReg } from "../Interface/login";
 import { useRegistrationMutation } from "../redux/features/auth/authApi";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const { register, handleSubmit } = useForm<IReg>();
@@ -14,6 +15,13 @@ const Registration = () => {
   const handleReg = (data: IReg) => {
     signup(data);
     navigate("/login");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Registration Successfully, Please Login...",
+      showConfirmButton: false,
+      timer: 1000,
+    });
   };
 
   return (

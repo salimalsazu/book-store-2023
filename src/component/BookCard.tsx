@@ -6,8 +6,11 @@ import { useGetBooksQuery } from "../redux/features/books/bookApi";
 import SingleBookCard from "./SingleBookCard";
 
 const BookCard = () => {
-  const { data: books, isLoading, isError } = useGetBooksQuery(undefined);
-
+  const {
+    data: books,
+    isLoading,
+    isError,
+  } = useGetBooksQuery({ filterName: "", filterValue: "" });
 
   let gettingBooks;
 
