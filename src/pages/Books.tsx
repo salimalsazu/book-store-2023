@@ -16,7 +16,7 @@ const Books = () => {
 
   const { data: books, isLoading, isError } = useGetBooksQuery(filterText);
 
-  console.log(isLoading);
+
 
   let gettingBooks;
 
@@ -119,7 +119,7 @@ const Books = () => {
           </div>
           {/* Books */}
           <div className=" col-span-9 bg-gray-200 shadow-book-details-card p-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               {gettingBooks}
             </div>
           </div>

@@ -13,7 +13,6 @@ import { IBook } from "../Interface/book.interface";
 import { useForm } from "react-hook-form";
 import { useAppSelector } from "../redux/hook";
 import { IUser, RootState } from "../Interface/login";
-import { useEffect } from "react";
 
 export type IReview = {
   name?: string;
@@ -31,7 +30,7 @@ const DetailsBook = () => {
 
   const navigate = useNavigate();
 
-  const { register, handleSubmit } = useForm<IReview>();
+  const { register, handleSubmit, reset } = useForm<IReview>();
 
   const { id } = useParams();
 
@@ -46,10 +45,8 @@ const DetailsBook = () => {
         email: user?.email,
       },
     };
-
-    // console.log(review);
-
     postReview(review);
+    reset();
   };
 
   const { data } = useSingleBookQuery(id);
@@ -61,8 +58,6 @@ const DetailsBook = () => {
   } = useGetReviewsQuery(id, { pollingInterval: 2000 });
 
   const details: IBook = data?.data;
-
-  console.log(details);
 
   let gettingReviews;
 

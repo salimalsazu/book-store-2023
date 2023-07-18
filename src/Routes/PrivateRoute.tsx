@@ -13,8 +13,6 @@ const PrivateRoute = ({ children }: Iprops) => {
     (state: RootState) => state.auth
   );
 
-  console.log(user);
-
   const { pathname } = useLocation();
 
   //   if (isLoading) {

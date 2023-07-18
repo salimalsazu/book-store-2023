@@ -49,7 +49,10 @@ const AddNewBook = () => {
     <section className="px-[15px] lg:px-0 py-[50px] mt-[60px] bg-light-bg">
       <div className="container mx-auto w-full lg:w-[700px] p-5 bg-white shadow-book-details-card">
         <h2 className="text-xl font-bold text-dark-text mb-5">Add New Book</h2>
-        <form onSubmit={handleSubmit(handleAddBook)}>
+        <form
+          className="flex flex-col lg:flex-row justify-center"
+          onSubmit={handleSubmit(handleAddBook)}
+        >
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="" className="text-base font-medium text-gray-900">
@@ -66,7 +69,7 @@ const AddNewBook = () => {
               />
             </div>
           </div>
-          <div className="flex gap-5 w-full mt-3">
+          <div className="flex flex-col lg:flex-row gap-2 lg:gap-5 w-full mt-3">
             <div className="w-full">
               <div className="flex items-center justify-between">
                 <label

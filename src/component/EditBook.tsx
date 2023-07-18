@@ -78,7 +78,7 @@ const EditBook = () => {
               />
             </div>
           </div>
-          <div className="flex gap-5 w-full mt-3">
+          <div className="flex flex-col lg:flex-row gap-3 lg:gap-5 w-full mt-3">
             <div className="w-full">
               <div className="flex items-center justify-between">
                 <label

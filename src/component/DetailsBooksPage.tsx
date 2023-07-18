@@ -16,7 +16,7 @@ interface IDetailes {
 
 const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
   return (
-    <section className="flex lg:flex-row  justify-center my-10 mx-10 ">
+    <section className="flex justify-center my-10 lg:mx-10 ">
       <div>
         {details?.image ? (
           <img className="w-2/3" src={details?.image} alt="" />
@@ -24,12 +24,9 @@ const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
           <img className="w-2/3" src={books} alt="" />
         )}
       </div>
-      <div className="w-2/3 mt-5 lg:mt-0">
+      <div className=" w-full lg:w-2/3 mt-5 lg:mt-0">
         <div className="flex justify-between">
-          <div>
-            <button className="bg-red-500 text-white px-7 py-1 ">Sale</button>
-          </div>
-          <div className="flex item center gap-2 text-2xl ">
+          <div className="flex item center gap-2 txt-lg lg:text-2xl ">
             {details?.userId === user?._id && (
               <Link
                 to={`/editbook/${details?._id}`}
@@ -55,7 +52,7 @@ const DetailsBooksPage = ({ details, user, handleDeleteBook }: IDetailes) => {
             </button>
           </div>
         </div>
-        <p className="text-6xl font-bold mt-10">{details?.title}</p>
+        <p className="text-xl lg:text-6xl font-bold mt-10">{details?.title}</p>
         <p className="text-lg mt-5">Author: {details?.author}</p>
         <p className="text-xl mt-5 ">
           Price : <span className="text-red-500">$10.00</span>

@@ -37,7 +37,7 @@ const BookCard = () => {
         "The best and most beautiful things in the world cannot be seen or even
         heard, but must be felt with the heart."
       </p>
-      <div className="grid grid-cols-3 justify-center items-center mx-20 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center lg:mx-20 lg:gap-5 gap-2">
         {gettingBooks}
       </div>
     </section>

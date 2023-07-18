@@ -6,7 +6,7 @@ const MySingleBook = () => {
   const { data, isLoading, isError } = useMyBooksQuery(undefined, {
     pollingInterval: 1000,
   });
-  console.log(data);
+
 
   let myBooks;
 

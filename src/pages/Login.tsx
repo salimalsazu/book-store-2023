@@ -26,7 +26,7 @@ const Login = () => {
 
   useEffect(() => {
     if (data?.data?.accessToken && data?.data?.user) {
-      navigate(state.path || "/");
+      navigate(state?.path || "/");
 
       Swal.fire({
         position: "top-end",

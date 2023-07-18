@@ -58,7 +58,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addBook",
-        element: <AddBook />,
+        element: (
+          <PrivateRoute>
+            <AddBook />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/editbook/:id",
